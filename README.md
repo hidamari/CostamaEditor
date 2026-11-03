@@ -6,6 +6,10 @@ Costama Editor is a standalone Windows desktop app for browsing Auriga item DB f
 
 The interface is available in Traditional Chinese, English, and Japanese. The selected language is applied immediately and remembered.
 
+## Screenshot
+
+![Costama Editor running with the Japanese interface](sample_01.png)
+
 ## Quick Start
 
 ### Requirements

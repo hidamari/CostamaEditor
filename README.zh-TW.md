@@ -6,6 +6,10 @@ Costama Editor 是 Windows 桌面工具，用來搜尋 Auriga item DB、檢視 I
 
 介面支援繁體中文、English 和日本語；語言選擇會立即套用並記住。
 
+## 操作畫面
+
+![Costama Editor 日文介面畫面](sample_01.png)
+
 ## 快速開始
 
 ### 需求

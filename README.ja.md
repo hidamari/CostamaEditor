@@ -6,6 +6,10 @@ Costama Editor は、Auriga item DB の検索、ItemInfo／GRF によるアイ�
 
 画面は繁體中文、English、日本語に対応しています。選択した言語はすぐに反映され、次回起動時にも使われます。
 
+## スクリーンショット
+
+![日本語表示の Costama Editor](sample_01.png)
+
 ## クイックスタート
 
 ### 必要な環境
