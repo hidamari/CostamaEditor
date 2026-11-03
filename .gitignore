@@ -1,0 +1,17 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+.vs/
+
+# Machine-specific application settings can contain local source paths
+settings.json
+
+# Temporary build files
+/tmp/
+
+# Local planning documents are kept out of the public source repository
+/plan/
+
+# User-specific IDE files
+*.user
+*.suo
