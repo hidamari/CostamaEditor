@@ -67,7 +67,7 @@ dotnet build .\CostamaEditor.csproj -c Release
 ## アイコンとデータの対応範囲
 
 - ItemInfo は現在、テキスト形式の Lua／LUB を解析し、`identifiedResourceName` に対応する GRF アイコンを検索します。バイナリ LUB は非対応として表示し、元ファイルは変更しません。
-- GRF アイコンの読み込みには GRF Editor が必要です。Program Files の既定位置から `GRF.dll` を自動検出します。別の場所にインストールした場合は、GRF アイコンソースで `GRF.dll` を選択してください。同じフォルダーに `Utilities.dll` が必要です。カスタムパスは `settings.json` に保存されます。
+- GRF アイコンの読み込みには GRF Editor が必要です。Program Files の既定位置から `GRF.dll` を自動検出します。別の場所を使う場合は、メイン画面の「GRF アイコンソース」で「DLL を選択」をクリックし、`GRF.dll` ファイル自体を選んでください。同じフォルダーに `Utilities.dll` も必要です。「自動」をクリックするとカスタムパスを解除して自動検出に戻ります。選択したパスは実行ファイルと同じ場所の `settings.json` に保存されます。
 - 暗号化または互換性のない GRF からはアイコンを取得できない場合があります。メイン画面にソースの状態とエラー情報が表示されます。
 - ItemInfo と GRF は読み取り専用です。選択した Auriga item DB への書き込みは、アイテム編集画面で保存を確定した場合に限られます。
 

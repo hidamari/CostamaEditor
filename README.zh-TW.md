@@ -67,7 +67,7 @@ dotnet build .\CostamaEditor.csproj -c Release
 ## 圖示與資料支援
 
 - ItemInfo 目前解析文字型 Lua／LUB，依 `identifiedResourceName` 對應 GRF 圖示。二進位 LUB 會標示為不支援，不會修改原始檔案。
-- GRF 圖示讀取需要 GRF Editor。程式會自動搜尋 Program Files 的預設位置；若安裝在其他位置，可在 GRF 圖示來源中選擇 `GRF.dll`，且同一資料夾需有 `Utilities.dll`。自訂路徑會保存在 `settings.json`。
+- GRF 圖示讀取需要 GRF Editor。程式會自動搜尋 Program Files 的預設位置。要使用其他安裝位置，請在「GRF 圖示來源」按「選擇 DLL」，並選取 `GRF.dll` 檔案本身；同一資料夾也必須有 `Utilities.dll`。按「自動」可清除自訂路徑並恢復自動偵測。選取的路徑會保存在執行檔旁的 `settings.json`。
 - 加密或不相容的 GRF 可能無法提供圖示；主畫面會顯示來源狀態與錯誤資訊。
 - 工具只讀取 ItemInfo 和 GRF；只有在道具編輯器確認儲存後，才會寫入指定的 Auriga item DB。
 

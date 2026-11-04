@@ -67,7 +67,7 @@ The pool editor preserves the integer range in existing `rand(1,range)` scripts 
 ## Icons and Data Support
 
 - ItemInfo parsing currently supports text Lua / LUB files and maps `identifiedResourceName` values to GRF icons. Binary LUB files are marked unsupported and are not modified.
-- GRF icon loading requires GRF Editor. The app auto-detects `GRF.dll` in the default Program Files locations. If it is installed elsewhere, choose `GRF.dll` in the GRF icon sources panel; `Utilities.dll` must be beside it. The custom path is stored in `settings.json`.
+- GRF icon loading requires GRF Editor. The app auto-detects `GRF.dll` in the default Program Files locations. To use another installation, open **GRF icon sources**, click **Choose DLL**, and select the `GRF.dll` file itself. `Utilities.dll` must be in the same folder. Click **Auto** to clear the custom path and return to automatic detection. The selected path is stored in `settings.json` beside the executable.
 - Encrypted or incompatible GRF archives may not provide icons. The main screen shows source status and error details.
 - The app only reads ItemInfo and GRF files. It writes to the selected Auriga item DB only after you confirm saving in the item editor.
 
