@@ -13,6 +13,20 @@
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Foreground" Value="#E7EEF7" />
         </Style>
+        <Style TargetType="ToolTip">
+            <Setter Property="Background" Value="#15253A" />
+            <Setter Property="Foreground" Value="#E7EEF7" />
+            <Setter Property="BorderBrush" Value="#3A5069" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="8,5" />
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" Foreground="#E7EEF7" TextWrapping="Wrap" MaxWidth="520" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Foreground" Value="#E7EEF7" />
