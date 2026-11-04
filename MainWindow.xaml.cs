@@ -115,10 +115,53 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         FillSources(ItemDbSources, _settings.ItemDbSources);
         FillSources(ItemInfoSources, _settings.ItemInfoSources);
         FillSources(GrfSources, _settings.GrfSources);
+        UpdateGrfEditorPathDisplay();
         Closed += (_, _) => _grfCatalog?.Dispose();
     }
 
     private async void Reload_Click(object sender, RoutedEventArgs e) => await ReloadSourcesAsync();
+
+    private async void ChooseGrfEditorDll_Click(object sender, RoutedEventArgs e)
+    {
+        if (_isLoading) return;
+
+        var dialog = new OpenFileDialog
+        {
+            CheckFileExists = true,
+            Multiselect = false,
+            Filter = $"{LocalizationService.Get("Main.Grf.LibraryFilter")} (GRF.dll)|GRF.dll|{LocalizationService.Get("Main.FileFilter.All")} (*.*)|*.*",
+            InitialDirectory = File.Exists(_settings.GrfEditorDllPath)
+                ? Path.GetDirectoryName(_settings.GrfEditorDllPath) ?? string.Empty
+                : string.Empty,
+        };
+        if (dialog.ShowDialog(this) != true) return;
+
+        if (!string.Equals(Path.GetFileName(dialog.FileName), "GRF.dll", StringComparison.OrdinalIgnoreCase))
+        {
+            MessageBox.Show(this, LocalizationService.Get("Main.Grf.InvalidDll"), Title, MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        var utilitiesPath = Path.Combine(Path.GetDirectoryName(dialog.FileName)!, "Utilities.dll");
+        if (!File.Exists(utilitiesPath))
+        {
+            MessageBox.Show(this, LocalizationService.Get("Main.Grf.UtilitiesMissing"), Title, MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        _settings.GrfEditorDllPath = Path.GetFullPath(dialog.FileName);
+        UpdateGrfEditorPathDisplay();
+        await ReloadSourcesAsync();
+    }
+
+    private async void UseAutomaticGrfEditorPath_Click(object sender, RoutedEventArgs e)
+    {
+        if (_isLoading) return;
+
+        _settings.GrfEditorDllPath = null;
+        UpdateGrfEditorPathDisplay();
+        await ReloadSourcesAsync();
+    }
 
     private async void Language_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
     {
@@ -127,6 +170,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
         LocalizationService.SetLanguage(language);
         UpdateGridHeaders();
+        UpdateGrfEditorPathDisplay();
         _settings.Language = LocalizationService.CurrentLanguage;
         SaveSettings();
         SetSourceStatuses(ItemDbSources, _itemDbLoadResults);
@@ -151,6 +195,38 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         ItemsGrid.Columns[6].Header = LocalizationService.Get("Grid.ResourceName");
     }
 
+    private void UpdateGrfEditorPathDisplay()
+    {
+        var configuredPath = _settings.GrfEditorDllPath;
+        var detectedPath = GrfArchiveCatalog.ResolveLibraryPath(configuredPath);
+
+        if (!string.IsNullOrWhiteSpace(configuredPath) && File.Exists(configuredPath))
+        {
+            GrfEditorPathText.Text = LocalizationService.Get("Main.Grf.Path.Custom", configuredPath);
+            GrfEditorPathText.ToolTip = configuredPath;
+        }
+        else if (!string.IsNullOrWhiteSpace(configuredPath) && detectedPath is not null)
+        {
+            GrfEditorPathText.Text = LocalizationService.Get("Main.Grf.Path.CustomMissingFallback", configuredPath, detectedPath);
+            GrfEditorPathText.ToolTip = detectedPath;
+        }
+        else if (!string.IsNullOrWhiteSpace(configuredPath))
+        {
+            GrfEditorPathText.Text = LocalizationService.Get("Main.Grf.Path.CustomMissing", configuredPath);
+            GrfEditorPathText.ToolTip = configuredPath;
+        }
+        else if (detectedPath is not null)
+        {
+            GrfEditorPathText.Text = LocalizationService.Get("Main.Grf.Path.Auto", detectedPath);
+            GrfEditorPathText.ToolTip = detectedPath;
+        }
+        else
+        {
+            GrfEditorPathText.Text = LocalizationService.Get("Main.Grf.Path.NotFound");
+            GrfEditorPathText.ToolTip = null;
+        }
+    }
+
     private async Task ReloadSourcesAsync()
     {
         if (_isLoading) return;
@@ -169,7 +245,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             {
                 var dbResult = _itemDbReader.Read(dbPaths);
                 var infoResult = _itemInfoReader.Read(infoPaths);
-                var grfCatalog = new GrfArchiveCatalog();
+                var grfCatalog = new GrfArchiveCatalog(_settings.GrfEditorDllPath);
                 var grfResults = grfCatalog.Load(grfPaths);
                 foreach (var item in dbResult.Items)
                 {

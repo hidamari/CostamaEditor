@@ -105,7 +105,20 @@
                                 <TextBlock Text="{DynamicResource Ui.Main.Grf.Title}" FontWeight="Bold" FontSize="15" Foreground="#B8C9DC" VerticalAlignment="Center" />
                                 <TextBlock Text="{DynamicResource Ui.Main.Source.Priority}" Foreground="{StaticResource MutedText}" FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center" />
                             </Grid>
-                            <ListBox x:Name="GrfList" ItemsSource="{Binding GrfSources}" Height="142" BorderThickness="0" Background="#0C1727" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <Grid Margin="0,0,0,6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="GrfEditorPathText" Grid.Column="0" Foreground="{StaticResource MutedText}" FontSize="13"
+                                           TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                                <Button Grid.Column="1" Content="{DynamicResource Ui.Main.Grf.SelectLibrary}" Click="ChooseGrfEditorDll_Click"
+                                        FontSize="13" Padding="6,4" Margin="6,0,4,0" />
+                                <Button Grid.Column="2" Content="{DynamicResource Ui.Main.Grf.UseAutomatic}" Click="UseAutomaticGrfEditorPath_Click"
+                                        FontSize="13" Padding="6,4" />
+                            </Grid>
+                            <ListBox x:Name="GrfList" ItemsSource="{Binding GrfSources}" Height="118" BorderThickness="0" Background="#0C1727" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListBox.ItemTemplate><DataTemplate>
                                     <Border Padding="7,5" BorderBrush="#17263A" BorderThickness="0,0,0,1" ToolTip="{Binding Detail}">
                                         <StackPanel>

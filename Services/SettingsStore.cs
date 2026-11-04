@@ -9,6 +9,7 @@ public sealed class AppSettings
     public List<string> ItemDbSources { get; set; } = new();
     public List<string> ItemInfoSources { get; set; } = new();
     public List<string> GrfSources { get; set; } = new();
+    public string? GrfEditorDllPath { get; set; }
 }
 
 public sealed class SettingsStore

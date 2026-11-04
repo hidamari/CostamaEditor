@@ -11,6 +11,12 @@ public sealed class GrfArchiveCatalog : IDisposable
 {
     private readonly object _sync = new();
     private readonly List<ArchiveHandle> _archives = new();
+    private readonly string? _configuredLibraryPath;
+
+    public GrfArchiveCatalog(string? configuredLibraryPath = null)
+    {
+        _configuredLibraryPath = configuredLibraryPath;
+    }
 
     public IReadOnlyList<SourceLoadResult> Load(IEnumerable<string> orderedPaths)
     {
@@ -22,7 +28,7 @@ public sealed class GrfArchiveCatalog : IDisposable
     {
         DisposeArchives();
         var results = new List<SourceLoadResult>();
-        var libraryPath = FindLibraryPath();
+        var libraryPath = ResolveLibraryPath(_configuredLibraryPath);
         if (libraryPath is null)
         {
             return orderedPaths
@@ -193,8 +199,11 @@ public sealed class GrfArchiveCatalog : IDisposable
             DisposeArchives();
     }
 
-    private static string? FindLibraryPath()
+    public static string? ResolveLibraryPath(string? configuredPath)
     {
+        if (!string.IsNullOrWhiteSpace(configuredPath) && File.Exists(configuredPath))
+            return Path.GetFullPath(configuredPath);
+
         var candidates = new[]
         {
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "GRF Editor", "GRF.dll"),
