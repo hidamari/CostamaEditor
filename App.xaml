@@ -106,9 +106,9 @@
             <Setter Property="Background" Value="#0C1727" />
             <Setter Property="Foreground" Value="#E7EEF7" />
             <Setter Property="BorderBrush" Value="#26364B" />
-            <Setter Property="GridLinesVisibility" Value="Horizontal" />
+            <Setter Property="GridLinesVisibility" Value="All" />
             <Setter Property="HorizontalGridLinesBrush" Value="#1C2A3D" />
-            <Setter Property="VerticalGridLinesBrush" Value="#162337" />
+            <Setter Property="VerticalGridLinesBrush" Value="#3A5069" />
             <Setter Property="RowBackground" Value="#0C1727" />
             <Setter Property="AlternatingRowBackground" Value="#101D2E" />
             <Setter Property="HeadersVisibility" Value="Column" />
@@ -123,8 +123,9 @@
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Background" Value="#15253A" />
             <Setter Property="Foreground" Value="#AFC0D5" />
-            <Setter Property="BorderBrush" Value="#26364B" />
-            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="BorderBrush" Value="#3A5069" />
+            <Setter Property="BorderThickness" Value="0,0,1,1" />
+            <Setter Property="Padding" Value="10,4" />
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
         <Style TargetType="DataGridCell">

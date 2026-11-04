@@ -105,6 +105,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         _settings = _settingsStore.Load();
         _initializingLanguage = true;
         LocalizationService.SetLanguage(_settings.Language);
+        UpdateGridHeaders();
         _settings.Language = LocalizationService.CurrentLanguage;
         LanguageComboBox.SelectedValue = _settings.Language;
         StatusText = LocalizationService.Get("Main.Status.Ready");
@@ -125,6 +126,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             return;
 
         LocalizationService.SetLanguage(language);
+        UpdateGridHeaders();
         _settings.Language = LocalizationService.CurrentLanguage;
         SaveSettings();
         SetSourceStatuses(ItemDbSources, _itemDbLoadResults);
@@ -136,6 +138,17 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             ? LocalizationService.Get("Main.Status.LanguageChanged")
             : LocalizationService.Get("Main.Status.LanguageSaveFailed", _settingsSaveError);
         await UpdateItemPreviewAsync(SelectedItem);
+    }
+
+    private void UpdateGridHeaders()
+    {
+        ItemsGrid.Columns[0].Header = LocalizationService.Get("Grid.Id");
+        ItemsGrid.Columns[1].Header = LocalizationService.Get("Grid.Name");
+        ItemsGrid.Columns[2].Header = LocalizationService.Get("Grid.Category");
+        ItemsGrid.Columns[3].Header = LocalizationService.Get("Grid.JapaneseName");
+        ItemsGrid.Columns[4].Header = LocalizationService.Get("Grid.Type");
+        ItemsGrid.Columns[5].Header = LocalizationService.Get("Grid.DefinitionSource");
+        ItemsGrid.Columns[6].Header = LocalizationService.Get("Grid.ResourceName");
     }
 
     private async Task ReloadSourcesAsync()
