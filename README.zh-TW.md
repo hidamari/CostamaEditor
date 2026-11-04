@@ -10,6 +10,8 @@ Costama Editor 是 Windows 桌面工具，用來搜尋 Auriga item DB、檢視 I
 
 ![Costama Editor 日文介面畫面](sample_01.png)
 
+![Costama 獎池設定畫面](sample_02.png)
+
 ## 快速開始
 
 ### 需求
@@ -65,7 +67,7 @@ dotnet build .\CostamaEditor.csproj -c Release
 ## 圖示與資料支援
 
 - ItemInfo 目前解析文字型 Lua／LUB，依 `identifiedResourceName` 對應 GRF 圖示。二進位 LUB 會標示為不支援，不會修改原始檔案。
-- GRF 圖示讀取需要已安裝的 GRF Editor，程式會在 Program Files 的預設安裝位置尋找 `GRF.dll` 和相鄰的 `Utilities.dll`。缺少元件時，item DB 編輯仍可使用，但無法載入 GRF 圖示。
+- GRF 圖示讀取需要 GRF Editor。程式會自動搜尋 Program Files 的預設位置；若安裝在其他位置，可在 GRF 圖示來源中選擇 `GRF.dll`，且同一資料夾需有 `Utilities.dll`。自訂路徑會保存在 `settings.json`。
 - 加密或不相容的 GRF 可能無法提供圖示；主畫面會顯示來源狀態與錯誤資訊。
 - 工具只讀取 ItemInfo 和 GRF；只有在道具編輯器確認儲存後，才會寫入指定的 Auriga item DB。
 

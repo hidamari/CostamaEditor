@@ -10,6 +10,8 @@ Costama Editor は、Auriga item DB の検索、ItemInfo／GRF によるアイ�
 
 ![日本語表示の Costama Editor](sample_01.png)
 
+![コスタマ抽選設定画面](sample_02.png)
+
 ## クイックスタート
 
 ### 必要な環境
@@ -65,7 +67,7 @@ dotnet build .\CostamaEditor.csproj -c Release
 ## アイコンとデータの対応範囲
 
 - ItemInfo は現在、テキスト形式の Lua／LUB を解析し、`identifiedResourceName` に対応する GRF アイコンを検索します。バイナリ LUB は非対応として表示し、元ファイルは変更しません。
-- GRF アイコンの読み込みには GRF Editor のインストールが必要です。既定の Program Files フォルダーから `GRF.dll` と同じ場所にある `Utilities.dll` を検索します。必要な DLL がない場合も item DB の編集はできますが、GRF アイコンは読み込めません。
+- GRF アイコンの読み込みには GRF Editor が必要です。Program Files の既定位置から `GRF.dll` を自動検出します。別の場所にインストールした場合は、GRF アイコンソースで `GRF.dll` を選択してください。同じフォルダーに `Utilities.dll` が必要です。カスタムパスは `settings.json` に保存されます。
 - 暗号化または互換性のない GRF からはアイコンを取得できない場合があります。メイン画面にソースの状態とエラー情報が表示されます。
 - ItemInfo と GRF は読み取り専用です。選択した Auriga item DB への書き込みは、アイテム編集画面で保存を確定した場合に限られます。
 
