@@ -40,7 +40,7 @@ After the build, run `bin\Release\net10.0-windows\CostamaEditor.exe`. The framew
 3. Select **Reload sources** to build the item catalog and icon index.
 4. Search for and select an item in the catalog. Its details, definition source, and icon status appear below.
 
-The source lists and language preference are stored in `settings.json` beside `CostamaEditor.exe`. On first launch, the app reuses an existing settings file if available, or creates default settings. Make sure the executable folder is writable. If the default source paths do not match your computer, select the files from the main screen.
+The source lists and language preference are stored in `settings.json` beside `CostamaEditor.exe`. On first launch, the app reuses an existing settings file if available, or creates an empty settings file. Select your local item DB and other source files from the main screen. Make sure the executable folder is writable.
 
 ## Search and Edit Items
 

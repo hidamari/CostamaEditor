@@ -61,17 +61,6 @@ public sealed class SettingsStore
 
     private static AppSettings CreateDefaults()
     {
-        var settings = new AppSettings();
-        AddIfExists(settings.ItemDbSources, @"D:\RO\Auriga\Auriga\db\item_db.txt");
-        AddIfExists(settings.ItemDbSources, @"D:\RO\Auriga\Auriga\db\addon\item_db_add.txt");
-        AddIfExists(settings.ItemInfoSources, @"F:\Gravity\RagnarokJP\System\iteminfo_our.lua");
-        AddIfExists(settings.GrfSources, @"F:\Gravity\RagnarokJP\data.grf");
-        return settings;
-    }
-
-    private static void AddIfExists(List<string> paths, string path)
-    {
-        if (File.Exists(path))
-            paths.Add(path);
+        return new AppSettings();
     }
 }
