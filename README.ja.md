@@ -1,6 +1,6 @@
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md)
 
-# Costama Editor Ver 0.1.0
+# Costama Editor Ver 0.1.1
 
 Costama Editor は、Auriga item DB の検索、ItemInfo／GRF によるアイテムアイコンの表示、アイテムの追加・編集、Costama の抽選範囲・賞品の重み・数量の設定を行う Windows デスクトップアプリです。単体で動作し、map-server は必要ありません。
 

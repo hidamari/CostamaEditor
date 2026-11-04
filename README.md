@@ -1,6 +1,6 @@
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md)
 
-# Costama Editor Ver 0.1.0
+# Costama Editor Ver 0.1.1
 
 Costama Editor is a standalone Windows desktop app for browsing Auriga item DB files, viewing item icons from ItemInfo and GRF archives, adding or editing items, and configuring Costama roll ranges, reward weights, and quantities. It runs without map-server.
 

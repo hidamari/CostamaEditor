@@ -1,6 +1,6 @@
 [English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md)
 
-# Costama Editor Ver 0.1.0
+# Costama Editor Ver 0.1.1
 
 Costama Editor 是 Windows 桌面工具，用來搜尋 Auriga item DB、檢視 ItemInfo／GRF 道具圖示、新增或編輯道具，以及設定 Costama 抽選上限、獎品權重和數量。這是獨立的本機程式，執行時不需要啟動 map-server。
 
